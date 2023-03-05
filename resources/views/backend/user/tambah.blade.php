@@ -6,8 +6,8 @@
             {!! Form::text('nama', NULL, array('id' => 'nama', 'class' => 'form-control', 'placeholder' => 'Nama')) !!}
         </div>
         <div class="form-group">
-            {!! Form::label('nip', 'NIP', array('class' => 'control-label')) !!}
-            {!! Form::text('nip', NULL, array('id' => 'nip', 'class' => 'form-control', 'placeholder' => 'NIP')) !!}
+            {!! Form::label('username', 'Username', array('class' => 'control-label')) !!}
+            {!! Form::text('username', NULL, array('id' => 'username', 'class' => 'form-control', 'placeholder' => 'Username')) !!}
         </div>
         <div class="form-group">
             {!! Form::label('Password', 'Password', array('class' => 'control-label')) !!}

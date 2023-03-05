@@ -41,7 +41,7 @@ $(document).ready(function () {
 		serverSide: true,
 		ajax: "{{ url($url_admin.'/aksesgrup/detail/data/'.$id) }}",
 		columns: [
-			{ data: 'nip','defaultContent':'' },
+			{ data: 'username','defaultContent':'' },
 			{ data: 'nama','defaultContent':'' },
 			{ data: 'email','defaultContent':'' }
 		]

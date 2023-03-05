@@ -19,7 +19,7 @@ class User extends Authenticatable
 
     protected $dates=['deleted_at'];
     protected $fillable=[
-        'id','nip','nama','email', 'password', 'email_verified_at', 'level', 'aksesgrup_id','remember_token'
+        'id','username','nama','email', 'password', 'email_verified_at', 'level', 'aksesgrup_id','remember_token'
     ];
     protected $hidden=[
         'password', 'remember_token',

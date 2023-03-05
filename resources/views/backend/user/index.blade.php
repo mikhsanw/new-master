@@ -12,7 +12,7 @@
 		<table id="datatable" class="table table-striped table-bordered display" style="width:100%">
 			<thead class="bg-primary">
 				<tr>
-					<th class="text-center">NIP</th>
+					<th class="text-center">Username</th>
 					<th >Nama</th>
 					<th >E-Mail</th>
 					<th class="text-center">Akses Grup</th>

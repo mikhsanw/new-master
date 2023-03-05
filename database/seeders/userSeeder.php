@@ -17,7 +17,7 @@ class userSeeder extends Seeder
         DB::table('users')->truncate();
         DB::table('users')->insert([
             'id'=>\Ramsey\Uuid\Uuid::uuid4()->toString(),
-            'nip'=>'root',
+            'username'=>'root',
             'nama'=>'root',
             'password'=>bcrypt($this->userpass),
             'aksesgrup_id'=>1,

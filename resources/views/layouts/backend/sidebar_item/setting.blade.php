@@ -54,7 +54,7 @@
                     <h3>
                         {!! $user->nama !!}
                         <small>
-                            {!! $user->nip !!}
+                            {!! $user->username !!}
                         </small>
                     </h3>
                     <div id="form-lock-screen">
@@ -62,7 +62,7 @@
                         <div class="input-group-prepend">
                           <span class="input-group-text bg-transparent"><i class="ti-lock"></i></span>
                         </div>
-                        <input type="hidden" value="{!! $user->nip !!}" name="username" id="username">
+                        <input type="hidden" value="{!! $user->username !!}" name="username" id="username">
                         <input type="password" name="password" id="password" class="form-control bg-transparent" placeholder="Password">
                         <div class="input-group-append">
                           <button class="btn btn-success shadow-0 waves-effect waves-themed" type="button" id="unlock-screen">

@@ -282,13 +282,13 @@
                     <h3>
                         {!! $user->nama !!}
                         <small>
-                            {!! $user->nip !!}
+                            {!! $user->username !!}
                         </small>
                     </h3>
                     <p class="text-white opacity-50">Enter password to unlock screen</p>
                     <div id="form-lock-screen">
                         <div class="input-group input-group-lg">
-                            <input type="hidden" value="{!! $user->nip !!}" name="username" id="username">
+                            <input type="hidden" value="{!! $user->username !!}" name="username" id="username">
                             <input type="password" class="form-control" name="password" id="password" placeholder="Password">
                             <div class="input-group-append">
                                 <button class="btn btn-success shadow-0 waves-effect waves-themed" type="button" id="unlock-screen">

@@ -6,9 +6,9 @@
         'Nama')) !!}
     </div>
     <div class="form-group col-md-6">
-        {!! Form::label('nip', 'NIP', array('class' => 'col-md-6 control-label')) !!}
-        {!! Form::text('nip', $user->nip, array('id' => 'nip', 'class' => 'form-control',
-        'placeholder' => 'NIP', 'readonly')) !!}
+        {!! Form::label('username', 'Username', array('class' => 'col-md-6 control-label')) !!}
+        {!! Form::text('username', $user->username, array('id' => 'username', 'class' => 'form-control',
+        'placeholder' => 'Username', 'readonly')) !!}
     </div>
     <div class="form-group col-md-6">
         {!! Form::label('Password', 'Password', array('class' => 'col-md-6 control-label')) !!}

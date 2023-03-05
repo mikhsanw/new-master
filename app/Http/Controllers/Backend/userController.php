@@ -24,11 +24,11 @@ class userController extends Controller
             $response=['status'=>FALSE, 'pesan'=>$validator->messages()];
         }
         else {
-            $userdata=['nip'=>$request->input('username'), 'password'=>base64_decode($request->input('password'))];
+            $userdata=['username'=>$request->input('username'), 'password'=>base64_decode($request->input('password'))];
             if (Auth::attempt($userdata, $request->remember)) {
-                if ($user=User::whereNip($request->input('username'))->first()) {
+                if ($user=User::whereUsername($request->input('username'))->first()) {
                     $user->update(['remember_token'=>$request->_token]);
-                    Loginlog::create(['nip'=>$request->input('username'), 'ip'=>(new Help)->alamatIp()]);
+                    Loginlog::create(['username'=>$request->input('username'), 'ip'=>(new Help)->alamatIp()]);
                     $response=['status'=>TRUE, 'pesan'=>['msg'=>'Berhasil login']];
                 }
             }
@@ -83,7 +83,7 @@ class userController extends Controller
     public function store(Request $request)
     {
         $validator=Validator::make($request->all(), [
-            'nama'=>'required|string|max:255', 'nip'=>'required|string|max:50|unique:users', 'password'=>'min:6', 'aksesgrup_id'=>'required', 'level'=>'required',
+            'nama'=>'required|string|max:255', 'username'=>'required|string|max:50|unique:users', 'password'=>'min:6', 'aksesgrup_id'=>'required', 'level'=>'required',
         ]);
         if ($validator->fails()) {
             $response=['status'=>FALSE, 'pesan'=>$validator->messages()];

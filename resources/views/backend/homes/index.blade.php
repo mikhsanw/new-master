@@ -132,7 +132,7 @@
 <script src="{{ asset('backend/js/app.bundle.js') }}"></script>
 <script src="{{ asset('resources/vendor/jquery/blockUI.js') }}"></script>
 <script src="{{ asset('resources/vendor/jquery/jquery.loadmodal.js') }}"></script>
-<script src="{{ asset(config('master.aplikasi.author').'/home/jquery.js') }}"></script>
+<script src="{{ asset(config('master.aplikasi.author').'/js/jquery.js') }}"></script>
 <script src="{{ asset('resources/vendor/sweetalert2/sweetalert2.bundle.js') }}"></script>
 {{--<script src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>--}}
 @stack('js')

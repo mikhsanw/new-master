@@ -13073,13 +13073,13 @@ body .main-header .navbar .nav > li.search-box > a:hover, body .main-header .nav
   .app-menu .dropdown-mega-menu {
     width: 40rem; } }
 /*-----Preloader---*/
-#loader {
+/* #loader {
   position: fixed;
   width: 100%;
   height: 100vh;
   z-index: 999999;
   overflow: visible;
-  background: #fff url("../../images/preloaders/1.gif") no-repeat center center; }
+  background: #fff url("../../images/preloaders/1.gif") no-repeat center center; } */
 
 /*sidebar*/
 .main-sidebar {

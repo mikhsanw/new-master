@@ -42,7 +42,7 @@ $(document).ready(function() {
 		serverSide: true,
 		ajax: "{{ url($url_admin.'/user/data') }}",
 		columns: [
-				{ data: 'nip', searchable: false, orderable:false },
+				{ data: 'username', searchable: false, orderable:false },
 				{ data: 'nama' },
 				{ data: 'email', orderable:false },
 				{ data: 'aksesgrup', orderable:false },

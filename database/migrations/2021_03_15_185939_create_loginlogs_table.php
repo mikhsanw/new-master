@@ -15,7 +15,7 @@ class CreateLoginlogsTable extends Migration
     {
         Schema::create('loginlogs', function (Blueprint $table) {
             $table->id();
-            $table->string('nip')->nullable();
+            $table->string('username')->nullable();
             $table->ipAddress('ip')->nullable();
             $table->boolean('berhasil')->default(false);
             $table->timestamps();

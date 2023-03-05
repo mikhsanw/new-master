@@ -59,7 +59,7 @@
 </style>
 <script src="{{ URL::asset('resources/vendor/jquery/jquery.enc.js') }}"></script>
 <script src="{{ URL::asset('resources/vendor/jquery/jquery.form.js') }}"></script>
-<script src="{{ URL::asset(config('master.aplikasi.author').'/home/ajax_progress.js') }}"></script>
+<script src="{{ URL::asset(config('master.aplikasi.author').'/js/ajax_progress.js') }}"></script>
 <script src="{{ URL::asset(config('master.aplikasi.author').'/'.$halaman->kode.'/'.\Auth::id().'/ajax.js') }}"></script>
 <script type="text/javascript">
     $('.modal-title').html('<span class="fa fa-edit"></span> Tambah {{$halaman->nama}}');

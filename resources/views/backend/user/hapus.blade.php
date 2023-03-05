@@ -20,4 +20,4 @@
 </div>
 {!! Form::close() !!}
 <script src="{{ URL::asset('resources/vendor/jquery/jquery.form.js') }}"></script>
-<script src="{{ URL::asset(config('master.aplikasi.author').'/home/ajax_progress.js') }}"></script>
+<script src="{{ URL::asset(config('master.aplikasi.author').'/js/ajax_progress.js') }}"></script>
