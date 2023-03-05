@@ -41,3 +41,42 @@
       </div>
     </aside>
     <!-- /.control-sidebar -->
+
+{{-- Modal Lock Screen --}}
+<div class="modal modal-small fade text-center" id="lock-screen-modal" tabindex="-1" role="dialog" style="display: none; " aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-body text-white m-50">
+                <div class="py-3">
+                    <img src="{{ Avatar::create($user->nama)->toBase64() }}" class="img-responsive rounded-circle img-thumbnail" alt="thumbnail">
+                </div>
+                <div class="form-group">
+                    <h3>
+                        {!! $user->nama !!}
+                        <small>
+                            {!! $user->nip !!}
+                        </small>
+                    </h3>
+                    <div id="form-lock-screen">
+                      <div class="input-group mb-5">
+                        <div class="input-group-prepend">
+                          <span class="input-group-text bg-transparent"><i class="ti-lock"></i></span>
+                        </div>
+                        <input type="hidden" value="{!! $user->nip !!}" name="username" id="username">
+                        <input type="password" name="password" id="password" class="form-control bg-transparent" placeholder="Password">
+                        <div class="input-group-append">
+                          <button class="btn btn-success shadow-0 waves-effect waves-themed" type="button" id="unlock-screen">
+                              <i class="fas fa-key"></i></button>
+                        </div>
+                      </div>
+                    </div>
+                    <p class="text-white opacity-50">Enter your password to retrieve your session</p>
+                    <p class="text-white opacity-50">OR</p>
+                    <div class="text-center">
+                        <a href="#logout" onclick="e.preventDefault();document.getElementById('logout-form').submit();" class="btn btn-primary opacity-90 keluar">Logout</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

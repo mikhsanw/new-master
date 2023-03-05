@@ -81,7 +81,7 @@ class aksesgrupController extends Controller
         if($aksesgrup = Aksesgrup::find($id)) {
             return view('backend.aksesgrup.detail', compact('aksesgrup'));
         }else{
-            return abort(404);
+            return new Response(view('errors.404'));
         }
     }
 
@@ -90,7 +90,7 @@ class aksesgrupController extends Controller
         if($aksesgrup = Aksesgrup::find($id)) {
             return view('backend.aksesgrup.ubah', compact('aksesgrup'));
         }else{
-            return abort(404);
+            return new Response(view('errors.404'));
         }
     }
 
@@ -117,7 +117,7 @@ class aksesgrupController extends Controller
         if($aksesgrup = Aksesgrup::find($id)) {
             return view('backend.aksesgrup.hapus', compact('aksesgrup'));
         }else{
-            return abort(404);
+            return new Response(view('errors.404'));
         }
     }
 

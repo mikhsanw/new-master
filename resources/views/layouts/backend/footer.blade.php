@@ -1,5 +1,5 @@
 <footer class="main-footer">
 	  <div class="container">
-		 {{date('Y')}} © <a href="#">{{$aplikasi->nama}}</a>. All Right Reserved
+		 {{date('Y')}} © <a href="#">{{$aplikasi->singkatan}}</a>. Tim IT Diskominfotik Kabupaten Bengkalis
 	  </div>
   </footer>

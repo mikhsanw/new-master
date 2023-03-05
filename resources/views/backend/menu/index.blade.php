@@ -2,10 +2,10 @@
 @push('title', $halaman->nama)
 @push('header',$halaman->nama)
 @push('tombol')
-<a class="waves-effect waves-light btn bg-gradient-primary py-2 px-3 b-0 tambah" href="#tambah">
+<a class="waves-effect waves-light btn bg-gradient-primary text-white py-2 px-3 b-0 tambah" href="#tambah">
     Tambah
 </a>
-<a class="waves-effect waves-light btn bg-gradient-warning py-2 px-3 b-0" href="{{url($halaman->kode.'/extract-menu')}}" target="_blank">
+<a class="waves-effect waves-light btn bg-gradient-warning text-white py-2 px-3 b-0" href="{{url($halaman->kode.'/extract-menu')}}" target="_blank">
     Extract Menu
 </a>
 @endpush

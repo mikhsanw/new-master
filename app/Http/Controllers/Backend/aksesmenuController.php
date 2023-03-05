@@ -39,7 +39,7 @@ class aksesmenuController extends Controller
             return view('backend.aksesmenu.tambah', compact('menu', 'aksesgrup'));
         }
         else {
-            return abort(404);
+            return new Response(view('errors.404'));
         }
     }
 
@@ -69,7 +69,7 @@ class aksesmenuController extends Controller
             return view('backend.aksesmenu.index', compact('aksesgrup'));
         }
         else {
-            return abort(404);
+            return new Response(view('errors.404'));
         }
     }
 

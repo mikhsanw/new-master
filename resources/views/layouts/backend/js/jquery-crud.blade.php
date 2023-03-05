@@ -1,5 +1,12 @@
 $(document).ready(function(){
    $('.tambah').click(function(){
+		if({{Auth::user()->level}}==3 && "{{$kode}}" === "halaman"){
+			return Swal.fire({
+					title: 'Cancelled',
+					text: 'Anda tidak memiliki akses untuk ini',
+					type: 'error'
+				});
+		}
 		ojisatrianiLoadingFadeIn();
 		$.loadmodal({
 			url: "{{ url($url_admin.'/'.$kode.'/create') }}",
@@ -24,6 +31,13 @@ $(document).ready(function(){
   });
 
   $(document).on("click",".ubah",function() {
+	if({{Auth::user()->level}}==3 && "{{$kode}}" === "halaman"){
+			return Swal.fire({
+					title: 'Cancelled',
+					text: 'Anda tidak memiliki akses untuk ini',
+					type: 'error'
+				});
+		}
     ojisatrianiLoadingFadeIn();
         var id = $(this).attr("{{$kode.'-id'}}");
 		$.loadmodal({
@@ -48,6 +62,13 @@ $(document).ready(function(){
 	});
 
   	$(document).on("click",".hapus",function() {
+		if({{Auth::user()->level}}==3 && "{{$kode}}" === "halaman"){
+			return Swal.fire({
+					title: 'Cancelled',
+					text: 'Anda tidak memiliki akses untuk ini',
+					type: 'error'
+				});
+		}
 		ojisatrianiLoadingFadeIn();
         var id = $(this).attr("{{$kode.'-id'}}");
 		$.loadmodal({

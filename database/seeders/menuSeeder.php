@@ -44,22 +44,6 @@ class menuSeeder extends Seeder
             }
           },
           {
-            "id": 34,
-            "parent_id": null,
-            "kode": "aplikasi",
-            "nama": "Aplikasi",
-            "link": "aplikasi",
-            "icon": "fas fa-laptop",
-            "tampil": 1,
-            "urut": 3,
-            "status": 1,
-            "detail": {
-              "model": "aplikasi",
-              "title": "",
-              "keterangan": ""
-            }
-          },
-          {
             "id": 24,
             "parent_id": null,
             "kode": "slider",
@@ -67,12 +51,28 @@ class menuSeeder extends Seeder
             "link": "slider",
             "icon": "fas fa-sliders-h",
             "tampil": 1,
-            "urut": 4,
+            "urut": 3,
             "status": 1,
             "detail": {
               "model": "foto",
               "title": null,
               "keterangan": null
+            }
+          },
+          {
+            "id": 29,
+            "parent_id": null,
+            "kode": "kontak",
+            "nama": "Kontak",
+            "link": "kontak",
+            "icon": "far fa-address-book",
+            "tampil": 1,
+            "urut": 4,
+            "status": 1,
+            "detail": {
+              "model": "Kontak",
+              "title": "",
+              "keterangan": ""
             }
           },
           {
@@ -140,6 +140,22 @@ class menuSeeder extends Seeder
             }
           },
           {
+            "id": 34,
+            "parent_id": 10,
+            "kode": "aplikasi",
+            "nama": "Aplikasi",
+            "link": "aplikasi",
+            "icon": "fas fa-laptop",
+            "tampil": 1,
+            "urut": 1,
+            "status": 1,
+            "detail": {
+              "model": "aplikasi",
+              "title": "",
+              "keterangan": ""
+            }
+          },
+          {
             "id": 5,
             "parent_id": 10,
             "kode": "user",
@@ -147,28 +163,12 @@ class menuSeeder extends Seeder
             "link": "user",
             "icon": "fas fa-users",
             "tampil": 1,
-            "urut": 1,
+            "urut": 2,
             "status": 1,
             "detail": {
               "model": "",
               "title": null,
               "keterangan": null
-            }
-          },
-          {
-            "id": 29,
-            "parent_id": null,
-            "kode": "kontak",
-            "nama": "Kontak",
-            "link": "kontak",
-            "icon": "far fa-address-book",
-            "tampil": 1,
-            "urut": 17,
-            "status": 1,
-            "detail": {
-              "model": "Kontak",
-              "title": "",
-              "keterangan": ""
             }
           }
         ]';

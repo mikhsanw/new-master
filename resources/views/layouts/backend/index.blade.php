@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
   
-<!-- Mirrored from powerbi-admin-template.multipurposethemes.com/bs4/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Feb 2023 04:44:23 GMT -->
 <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -9,9 +8,11 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 	<meta name="description" content="{!! ucwords(strtolower(($aplikasi->nama??'').' '.($aplikasi->daerah??''))) !!}">
     <meta name="author" content="{!! config('master.aplikasi.author') !!}">
-    <link rel="icon" href="{{ asset($aplikasi->file_favicon->url_stream) }}">
-
-    <title>{{ config('master.aplikasi.nama') }} - @stack('title')</title>
+   
+	@if($aplikasi->file_favicon)
+		<link rel="icon" type="image/png" sizes="32x32" href="{{ asset($aplikasi->file_favicon->url_stream)??'' }}">
+		<title>@stack('title') | {{$aplikasi->singkatan.' '.$aplikasi->daerah}}</title>
+	@endif
     
 	<!-- Vendors Style-->
 	<link rel="stylesheet" href="{{url('backend/main/css/vendors_css.css')}}">
@@ -49,8 +50,12 @@
 									<nav>
 										<ol class="breadcrumb">
 											<li class="breadcrumb-item"><a href="#"><i class="fa fa-home"></i></a></li>
-											<li class="breadcrumb-item" aria-current="page">{{$halaman->parent->nama??'Beranda'}}</li>
-											<li class="breadcrumb-item active" aria-current="page">{{$halaman->nama}}</li>
+											@if($halaman->parentRecursive)
+												{!!$halaman->createMenuTree($halaman->parentRecursive)!!}
+												<li class="breadcrumb-item active" aria-current="page">{{$halaman->nama}}</li>
+											@else
+												<li class="breadcrumb-item active" aria-current="page">{{$halaman->nama}}</li>
+											@endif
 										</ol>
 									</nav>
 								</div>
@@ -122,5 +127,4 @@
 	
 </body>
 
-<!-- Mirrored from powerbi-admin-template.multipurposethemes.com/bs4/main/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 06 Feb 2023 04:45:18 GMT -->
 </html>
