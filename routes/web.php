@@ -32,3 +32,4 @@ Route::post('logout', 'Auth\LoginController@logout')->name('logout');
 
 Route::get('file/{id}/{nama}', 'Backend\fileController@getFile');
 Route::get('download/{id}/{nama}', 'Backend\fileController@download');
+Route::resource('posts', \App\Http\Controllers\PostsController::class);
