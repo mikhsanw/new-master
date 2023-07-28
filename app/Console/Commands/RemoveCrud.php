@@ -76,11 +76,19 @@ class RemoveCrud extends Command
     }
 
     private function deleteRoute($namingConvention){
-        $file = file_get_contents(base_path('routes/web.php'));
-        $search = "\nRoute::resource('".$namingConvention['plural_low_name']."', \App\Http\Controllers".DIRECTORY_SEPARATOR.ucfirst($namingConvention['plural_name'])."Controller::class);";
+        $file = file_get_contents(base_path('routes/backend.php'));
+        
+        $route ='';
+        $route .=str_repeat("\t", 1).'Route::prefix(\''.$namingConvention['plural_low_name'].'\')->as(\''.$namingConvention['plural_low_name'].'\')->group(function () {'."\n";
+        $route .=str_repeat("\t", 3).'Route::get(\'/data\', \''.$namingConvention['plural_name'].'Controller@data\');'."\n";
+        $route .=str_repeat("\t", 3).'Route::get(\'/hapus/{id}\', \''.$namingConvention['plural_name'].'Controller@hapus\');'."\n";
+        $route .=str_repeat("\t", 2).'});'."\n";
+        $route .=str_repeat("\t", 2).'Route::resource(\''.$namingConvention['plural_low_name'].'\', \''.$namingConvention['plural_name'].'Controller\');'."\n\n";
+        $route .=str_repeat("\t", 1);
+
         $replace = "";
-        $filereplace = str_replace($search, $replace, $file);
-        file_put_contents(base_path('routes/web.php'), $filereplace);
+        $filereplace = str_replace($route, $replace, $file);
+        file_put_contents(base_path('routes/backend.php'), $filereplace);
         $this->line("<info>Route deleted</info>");
     }
 }

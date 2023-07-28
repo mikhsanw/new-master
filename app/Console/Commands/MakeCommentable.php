@@ -53,7 +53,7 @@ class MakeCommentable extends Command
         MakeModelService $makeModelService,
         EditCommentableView $editCommentableView,
         MakeGlobalService $makeGlobalService,
-        PathsAndNamespacesService $pathsAndNamespacesService,
+        PathsAndNamespacesService $pathsAndNamespacesService
     )
     {
         parent::__construct();

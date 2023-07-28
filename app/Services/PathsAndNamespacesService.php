@@ -171,12 +171,12 @@ class PathsAndNamespacesService
     /** paths views */
     public function getRealpathBaseViews()
     {
-        return $this->getRealpathBase('resources'.DIRECTORY_SEPARATOR.'views');
+        return $this->getRealpathBase('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'backend');
     }
 
     public function getRealpathBaseCustomViews($namingConvention)
     {
-        return realpath(base_path('resources'.DIRECTORY_SEPARATOR.'views')).DIRECTORY_SEPARATOR.$namingConvention['plural_low_name'];
+        return realpath(base_path('resources'.DIRECTORY_SEPARATOR.'views'.DIRECTORY_SEPARATOR.'backend')).DIRECTORY_SEPARATOR.$namingConvention['plural_low_name'];
     }
 
     public function getCommentableCommentBlockPath()

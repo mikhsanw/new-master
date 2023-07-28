@@ -61,7 +61,7 @@ class MakeViews extends Command
         }
         else
         {
-            $stubs=['index', 'create', 'edit', 'show', 'datatables', 'ajax'];
+            $stubs=['index', 'tambah', 'ubah', 'hapus', 'datatables', 'ajax'];
             // check if all stubs exist
             foreach ($stubs as $stub)
             {
@@ -97,20 +97,20 @@ class MakeViews extends Command
         $this->makeViewsService->createFileOrError($namingConvention, $contentIndex, 'index.blade.php');
 
 
-        /* ************************** create view *************************** */
+        /* ************************** tambah view *************************** */
 
-        $contentCreate = $this->makeViewsService->findAndReplaceCreateViewPlaceholderColumns($columns, $templateViewsDirectory, $namingConvention, $separateStyleAccordingToActions);
-        $this->makeViewsService->createFileOrError($namingConvention, $contentCreate, 'create.blade.php');
+        $contentTambah = $this->makeViewsService->findAndReplaceTambahViewPlaceholderColumns($columns, $templateViewsDirectory, $namingConvention, $separateStyleAccordingToActions);
+        $this->makeViewsService->createFileOrError($namingConvention, $contentTambah, 'tambah.blade.php');
 
-        /* ************************** show view *************************** */
+        /* ************************** hapus view *************************** */
 
-        $contentShow = $this->makeViewsService->findAndReplaceShowViewPlaceholderColumns($templateViewsDirectory, $namingConvention, $separateStyleAccordingToActions);
-        $this->makeViewsService->createFileOrError($namingConvention, $contentShow, 'show.blade.php');
+        $contentHapus = $this->makeViewsService->findAndReplaceHapusViewPlaceholderColumns($columns, $templateViewsDirectory, $namingConvention, $separateStyleAccordingToActions);
+        $this->makeViewsService->createFileOrError($namingConvention, $contentHapus, 'hapus.blade.php');
 
-        /* ************************** edit view *************************** */
+        /* ************************** ubah view *************************** */
 
-        $contentEdit = $this->makeViewsService->findAndReplaceEditViewPlaceholderColumns($columns, $templateViewsDirectory, $namingConvention, $separateStyleAccordingToActions);
-        $this->makeViewsService->createFileOrError($namingConvention, $contentEdit, 'edit.blade.php');
+        $contentUbah = $this->makeViewsService->findAndReplaceUbahViewPlaceholderColumns($columns, $templateViewsDirectory, $namingConvention, $separateStyleAccordingToActions);
+        $this->makeViewsService->createFileOrError($namingConvention, $contentUbah, 'ubah.blade.php');
 
         /* ************************** datatable view *************************** */
 

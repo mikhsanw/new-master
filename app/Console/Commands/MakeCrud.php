@@ -129,8 +129,22 @@ class MakeCrud extends Command
                                         ROUTE
 
         ************************************************************************* */
-        $route = "\nRoute::resource('".$namingConvention['plural_low_name']."', \App\Http\Controllers".DIRECTORY_SEPARATOR.$namingConvention['plural_name']."Controller::class);";
-        File::append(base_path('routes/web.php'), $route);
+        // $route = "\nRoute::resource('".$namingConvention['plural_low_name']."', \App\Http\Controllers".DIRECTORY_SEPARATOR.$namingConvention['plural_name']."Controller::class);";
+
+        $route ='';
+        $route .=str_repeat("\t", 1).'Route::prefix(\''.$namingConvention['plural_low_name'].'\')->as(\''.$namingConvention['plural_low_name'].'\')->group(function () {'."\n";
+        $route .=str_repeat("\t", 3).'Route::get(\'/data\', \''.$namingConvention['plural_name'].'Controller@data\');'."\n";
+        $route .=str_repeat("\t", 3).'Route::get(\'/hapus/{id}\', \''.$namingConvention['plural_name'].'Controller@hapus\');'."\n";
+        $route .=str_repeat("\t", 2).'});'."\n";
+        $route .=str_repeat("\t", 2).'Route::resource(\''.$namingConvention['plural_low_name'].'\', \''.$namingConvention['plural_name'].'Controller\');'."\n\n";
+        $route .=str_repeat("\t", 1).'});'."\r\n".'});';
+
+        $file = file_get_contents(base_path('routes/backend.php'));
+        $search = "});\r\n});";
+        $replace = $route;
+        $filereplace = str_replace($search, $replace, $file);
+        file_put_contents(base_path('routes/backend.php'), $filereplace);
+
         $this->line("<info>Created Route:</info> ".$namingConvention['plural_low_name']);
 
 
