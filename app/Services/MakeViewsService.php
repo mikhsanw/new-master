@@ -78,7 +78,7 @@ class MakeViewsService
             $column    = $type[0];
 
             // our placeholders
-            $thIndex    .=str_repeat("\t", 5).'<th class="text-center">'.trim($column)."</th>\n";
+            $thIndex    .=str_repeat("\t", 5).'<th class="text-center">'.ucwords(strtolower(trim($column)))."</th>\n";
         }
 
         $indexStub = File::get($this->pathsAndNamespacesService->getCrudgenViewsStubCustom($templateViewsDirectory).DIRECTORY_SEPARATOR.'index.stub');
