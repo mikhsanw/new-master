@@ -80,5 +80,11 @@ Route::group(['prefix' => config('master.url.admin')], function () {
         });
         Route::resource('aplikasi', 'aplikasiController');   
 
-    });
+    	Route::prefix('tes')->as('tes')->group(function () {
+			Route::get('/data', 'TesController@data');
+			Route::get('/hapus/{id}', 'TesController@hapus');
+		});
+		Route::resource('tes', 'TesController');
+
+	});
 });

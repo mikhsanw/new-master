@@ -114,8 +114,7 @@ class MakeViewsService
     public function findAndReplaceHapusViewPlaceholderColumns($columns, $templateViewsDirectory, $namingConvention, $separateStyleAccordingToActions)
     {
         $formDelete='';
-        foreach ($columns as $column)
-        {
+        $column = $columns[0];
             $type      = explode(':', trim($column));
             $sql_type  = (count($type)==2) ? $type[1] : 'string';
             $column    = $type[0];
@@ -125,7 +124,7 @@ class MakeViewsService
             $formDelete .=str_repeat("\t", 2).'<p>'."\n";
             $formDelete .=str_repeat("\t", 3).'<label class="control-label">Hapus data <strong>{{ $data->'.trim($column).' }}</strong>?</label>'."\n";
             $formDelete .=str_repeat("\t", 2).'</p>'."\n";
-        }
+        
         $deleteStub = File::get($this->pathsAndNamespacesService->getCrudgenViewsStubCustom($templateViewsDirectory).DIRECTORY_SEPARATOR.'hapus.stub');
         $deleteStub = str_replace('DummyVariable', $formDelete, $deleteStub);
 
@@ -165,7 +164,7 @@ class MakeViewsService
             $typeHtml = $this->getHtmlType($sql_type);
 
             // our placeholders
-            $field .=str_repeat("\t", 2).'{ data: \''.strtolower(trim($column)).'\' },'."\n";
+            $field .=str_repeat("\t", 4).'{ data: \''.strtolower(trim($column)).'\' },'."\n";
         }
 
         $datatableStub = File::get($this->pathsAndNamespacesService->getCrudgenViewsStubCustom($templateViewsDirectory).DIRECTORY_SEPARATOR.'datatables.stub');
