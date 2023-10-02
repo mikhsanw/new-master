@@ -1,6 +1,6 @@
 @extends('layouts.backend.index')
-@section('title','Dashboard')
-@section('header','Dashboard')
+@push('title','Dashboard')
+@push('header','Dashboard')
 @section('content')
 <section class="content">
 	<h6 class="pull-right">{{date("l, d F Y")}}</h6>

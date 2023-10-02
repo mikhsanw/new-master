@@ -17,7 +17,7 @@ class DummyClass extends Controller
     public function data(Request $request)
     {
         if ($request->ajax()) {
-            $data= $this->model::query();
+            $data= $this->model::DummyQuery;
             return Datatables::of($data)->addIndexColumn()
                 ->addColumn('action', '<div style="text-align: center;">
                <a class="edit ubah" data-toggle="tooltip" data-placement="top" title="Edit" '.$this->kode.'-id="{{ $id }}" href="#edit-{{ $id }}">
@@ -39,7 +39,8 @@ class DummyClass extends Controller
      */
     public function create()
     {
-        return view('backend.'.$this->kode.'.tambah');
+DummySelectCreate
+        return view('backend.'.$this->kode.'.tambah' DummyDataCreate);
     }
 
     /**
@@ -88,7 +89,8 @@ DummyValidation
     public function edit($id)
     {
         $data=[
-            'data'    => $this->model::find($id)
+            'data'    => $this->model::find($id),
+DummySelectEdit
         ];
         return view('backend.'.$this->kode.'.ubah', $data);
     }

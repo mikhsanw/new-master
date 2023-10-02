@@ -36,17 +36,51 @@ class MakeControllerService
     public function findAndReplaceControllerPlaceholderColumns($columns, $controllerStub, $namingConvention)
     {
         $cols='';
+        $Select='';
+        $relasiloop=1;
+        $relasi='';
         foreach ($columns as $column)
         {
             $type     = explode(':', trim($column));
+            $sqlType = $type[1];
             $column   = $type[0];
             // our placeholders
             $cols .= str_repeat("\t", 5)."'".trim($column)."' => 'required|'.config('master.regex.json'),\n";
+
+            if($sqlType === 'relasi'){
+                $modelname = $this->makeGlobalService->getNamingConvention($type[2]);
+                $Select .= str_repeat("\t", 3)."'".trim($column)."'".str_repeat("\t", 1)."=> \App\Model\\".$modelname['singular_name']."::pluck('nama','id'),\n";
+                if(($relasiloop == 1)){
+                    $relasi .= "'".$modelname['singular_low_name']."'";
+                }else{
+                    $relasi .= ",'".$modelname['singular_low_name']."'";
+                }
+                $relasiloop++;
+            }elseif($sqlType === 'select'){
+                $Select .= str_repeat("\t", 3)."'".trim($column)."'".str_repeat("\t", 1)."=> config('master.".trim($column)."'),\n";
+            }
         }
-
         $cols = $this->makeGlobalService->cleanLastLineBreak($cols);
+        
+        $SelectCreate = '';
+        $datacreate = '';
 
+        $querydata = 'query()';
+        if($Select !== ''){
+            $SelectCreate .= str_repeat("\t", 2) . '$data=[' . "\n";
+            $SelectCreate .= $Select;
+            $SelectCreate .= str_repeat("\t", 2)."];\n";
+            $datacreate = ',$data';
+            
+            if($relasi !== ''){
+                $querydata = 'with('.$relasi.')->get()';
+            }
+        }
         // we replace our placeholders
+        $controllerStub = str_replace('DummyQuery', $querydata, $controllerStub);
+        $controllerStub = str_replace('DummySelectEdit', $Select, $controllerStub);
+        $controllerStub = str_replace('DummySelectCreate', $SelectCreate, $controllerStub);
+        $controllerStub = str_replace('DummyDataCreate', $datacreate, $controllerStub);
         $controllerStub = str_replace('DummyValidation', $cols, $controllerStub);
 
         return $controllerStub;

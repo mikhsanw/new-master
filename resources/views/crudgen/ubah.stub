@@ -1,7 +1,7 @@
 {!! Form::open(array('id' => 'frmOji', 'route' => [$halaman->kode.'.update', $data->id], 'class' => 'form account-form', 'method' => 'PUT', 'files' => 'true')) !!}
 <div class="row">
     <div class="col-md-12">
-        DummyFormCreate
+DummyFormCreate
     </div>
 	{!! Form::hidden('table-list', 'datatable', array('id' => 'table-list')) !!}
 </div>

@@ -76,7 +76,9 @@ class MakeViewsService
         {
             $type      = explode(':', trim($column));
             $column    = $type[0];
-
+            if($type[1] === 'relasi'){
+                $column = $type[2];
+            }
             // our placeholders
             $thIndex    .=str_repeat("\t", 5).'<th class="text-center">'.ucwords(strtolower(trim($column)))."</th>\n";
         }
@@ -95,14 +97,20 @@ class MakeViewsService
         foreach ($columns as $column)
         {
             $type      = explode(':', trim($column));
-            $sql_type  = (count($type)==2) ? $type[1] : 'string';
+            $sql_type  = $type[1];
             $column    = $type[0];
             $typeHtml = $this->getHtmlType($sql_type);
 
+
             // our placeholders
             $formCreate .=str_repeat("\t", 2).'<p>'."\n";
-            $formCreate .=str_repeat("\t", 3).'{!! Form::label(\''.trim($column).'\', \'Masukkan '.ucfirst(trim($column)).'\', [\'class\'=>\'control-label\']) !!}'."\n";
-            $formCreate .=str_repeat("\t", 3).'{!! Form::'.$typeHtml.'(\''.trim($column).'\', null, array(\'id\' => \'nama\', \'class\' => \'form-control\', \'autocomplete\' => \'off\')) !!}'."\n";
+            if($typeHtml === 'select'){
+                $formCreate .=str_repeat("\t", 3).'{!! Form::label(\''.trim($column).'\', \'Pilih '.ucfirst(trim($column)).'\', [\'class\'=>\'control-label\']) !!}'."\n";
+                $formCreate .=str_repeat("\t", 3).'{!! Form::'.$typeHtml.'(\''.trim($column).'\',$'.trim($column).', null, array(\'id\' => \''.trim($column).'\', \'class\' => \'form-control select2\', \'placeholder\'=>\'Pilih\')) !!}'."\n";
+            }else{
+                $formCreate .=str_repeat("\t", 3).'{!! Form::label(\''.trim($column).'\', \'Masukkan '.ucfirst(trim($column)).'\', [\'class\'=>\'control-label\']) !!}'."\n";
+                $formCreate .=str_repeat("\t", 3).'{!! Form::'.$typeHtml.'(\''.trim($column).'\', null, array(\'id\' => \''.trim($column).'\', \'class\' => \'form-control\', \'autocomplete\' => \'off\')) !!}'."\n";
+            }
             $formCreate .=str_repeat("\t", 2).'</p>'."\n";
         }
 
@@ -116,9 +124,8 @@ class MakeViewsService
         $formDelete='';
         $column = $columns[0];
             $type      = explode(':', trim($column));
-            $sql_type  = (count($type)==2) ? $type[1] : 'string';
+            $sql_type  = $type[1];
             $column    = $type[0];
-            $typeHtml = $this->getHtmlType($sql_type);
             
             // our placeholders
             $formDelete .=str_repeat("\t", 2).'<p>'."\n";
@@ -137,14 +144,19 @@ class MakeViewsService
         foreach ($columns as $column)
         {
             $type      = explode(':', trim($column));
-            $sql_type  = (count($type)==2) ? $type[1] : 'string';
+            $sql_type  = $type[1];
             $column    = $type[0];
             $typeHtml = $this->getHtmlType($sql_type);
 
             // our placeholders
             $formEdit .=str_repeat("\t", 2).'<p>'."\n";
-            $formEdit .=str_repeat("\t", 3).'{!! Form::label(\''.trim($column).'\', \'Masukkan '.ucfirst(trim($column)).'\', [\'class\'=>\'control-label\']) !!}'."\n";
-            $formEdit .=str_repeat("\t", 3).'{!! Form::'.$typeHtml.'(\''.trim($column).'\', $data->'.trim($column).', array(\'id\' => \'nama\', \'class\' => \'form-control\', \'autocomplete\' => \'off\')) !!}'."\n";
+            if($typeHtml === 'select'){
+                $formEdit .=str_repeat("\t", 3).'{!! Form::label(\''.trim($column).'\', \'Pilih '.ucfirst(trim($column)).'\', [\'class\'=>\'control-label\']) !!}'."\n";
+                $formEdit .=str_repeat("\t", 3).'{!! Form::'.$typeHtml.'(\''.trim($column).'\',$'.trim($column).', $data->'.trim($column).', array(\'id\' => \''.trim($column).'\', \'class\' => \'form-control select2\', \'placeholder\'=>\'Pilih\')) !!}'."\n";
+            }else{
+                $formEdit .=str_repeat("\t", 3).'{!! Form::label(\''.trim($column).'\', \'Masukkan '.ucfirst(trim($column)).'\', [\'class\'=>\'control-label\']) !!}'."\n";
+                $formEdit .=str_repeat("\t", 3).'{!! Form::'.$typeHtml.'(\''.trim($column).'\', $data->'.trim($column).', array(\'id\' => \''.trim($column).'\', \'class\' => \'form-control\', \'autocomplete\' => \'off\')) !!}'."\n";
+            }
             $formEdit .=str_repeat("\t", 2).'</p>'."\n";
         }
 
@@ -159,10 +171,11 @@ class MakeViewsService
         foreach ($columns as $column)
         {
             $type      = explode(':', trim($column));
-            $sql_type  = (count($type)==2) ? $type[1] : 'string';
+            $sql_type  = $type[1];
             $column    = $type[0];
-            $typeHtml = $this->getHtmlType($sql_type);
-
+            if($type[1] === 'relasi'){
+                $column = $type[2].'.nama';
+            }
             // our placeholders
             $field .=str_repeat("\t", 4).'{ data: \''.strtolower(trim($column)).'\' },'."\n";
         }
@@ -195,7 +208,10 @@ class MakeViewsService
         [
             'string'  => 'text',
             'text'    => 'textarea',
-            'integer' => 'text'
+            'integer' => 'text',
+            'date'    => 'date',
+            'select'  => 'select',
+            'relasi'  => 'select'
         ];
         return (isset($conversion[$sql_type]) ? $conversion[$sql_type] : 'string');
     }

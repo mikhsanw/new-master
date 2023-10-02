@@ -43,13 +43,19 @@ class MakeMigrationService
         foreach ($columns as $column)
         {
             $type     = explode(':', trim($column));
-            $sqlType = (count($type)==2) ? $type[1] : 'string';
+            $sqlType = $type[1];
             $column   = $type[0];
-
+            
             // our placeholders
-            $fieldsMigration .= str_repeat("\t", 3).'$table'."->$sqlType('".trim($column)."')->nullable();\n";
+            if($sqlType === 'relasi'){
+                $fieldsMigration .= str_repeat("\t", 3).'$table'."->foreignUuid('".trim($column)."')->nullable()->constrained();\n";
+            }elseif($sqlType === 'select'){
+                $fieldsMigration .= str_repeat("\t", 3).'$table'."->string('".trim($column)."')->nullable();\n";
+            }else{
+                $size = (count($type)==3)?','.$type[2]:'';
+                $fieldsMigration .= str_repeat("\t", 3).'$table'."->$sqlType('".trim($column)."'".$size.")->nullable();\n";
+            }
         }
-
         $fieldsMigration = $this->makeGlobalService->cleanLastLineBreak($fieldsMigration);
 
         // we replace our placeholders
