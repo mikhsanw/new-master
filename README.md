@@ -11,9 +11,9 @@ NEW MASTER by MIKHSANW
 ### Installation
 1. Clone the repository
 2. Run `composer install`
-3. Run `php artisan key:generate`
-4. Run `copy .env.example` to `.env`
+4. copy `.env.example` to `.env`
 4. Create a database and configure it in `.env`
+3. Run `php artisan key:generate`
 5. Run `php artisan migrate --seed`
 6. Run `php artisan serve`
 7. Visit `http://localhost:8000` in your browser
@@ -26,3 +26,9 @@ NEW MASTER by MIKHSANW
 2. set path of certificate cacert.pem in php.ini (path to laragon folder)
     - for handle error guzzlehttp
     - example: curl.cainfo = "C:\laragon\bin\php\php-8.0.3-Win32-vs16-x64\extras\ssl\cacert.pem"
+
+### Crud Generator
+1. create crud
+`php artisan make:crud Post "nama:string,alamat:text,nip:integer,berita_id:relasi:Berita"`
+2. remove crud
+`php artisan rm:crud Post` or `php artisan rm:crud Post --force`
